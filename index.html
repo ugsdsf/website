@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wanna Go Out?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+      color: #333;
+      text-align: center;
+      overflow: hidden;
+    }
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      position: relative;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 18px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .btn-yes {
+      background-color: #28a745;
+    }
+    .btn-no {
+      background-color: #dc3545;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Would you like to go out sometime? 😊</h1>
+    <button class="btn btn-yes" onclick="alert('Yay! Let’s plan it out! 🎉')">Yes</button>
+    <button class="btn btn-no" id="noBtn" onclick="moveNoButton()">No</button>
+  </div>
+
+  <script>
+    function getRandomPosition() {
+      const container = document.querySelector('.container');
+      const containerRect = container.getBoundingClientRect();
+      const x = Math.random() * (containerRect.width - 100);
+      const y = Math.random() * (containerRect.height - 50);
+      return { x, y };
+    }
+
+    function moveNoButton() {
+      const noBtn = document.getElementById('noBtn');
+      const newNoBtn = noBtn.cloneNode(true);
+      const position = getRandomPosition();
+      newNoBtn.style.left = `${position.x}px`;
+      newNoBtn.style.top = `${position.y}px`;
+      newNoBtn.onclick = moveNoButton;
+      document.querySelector('.container').appendChild(newNoBtn);
+    }
+  </script>
+</body>
+</html>
