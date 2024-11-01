@@ -45,13 +45,29 @@
       background-color: #dc3545;
       position: absolute;
     }
+    .teddy {
+      display: none; /* Hidden by default */
+      width: 150px; /* Adjust size as needed */
+      margin-top: 20px;
+      animation: none; /* No animation initially */
+    }
+
+    /* Dancing Animation */
+    @keyframes dance {
+      0% { transform: translateY(0); }
+      25% { transform: translateY(-10px); }
+      50% { transform: translateY(0); }
+      75% { transform: translateY(-5px); }
+      100% { transform: translateY(0); }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Would you like to go out sometime? 😊</h1>
-    <button class="btn btn-yes" onclick="alert('Yay! Let’s plan it out! 🎉')">Yes</button>
+    <button class="btn btn-yes" onclick="showTeddyBear()">Yes</button>
     <button class="btn btn-no" id="noBtn" onclick="moveNoButton()">No</button>
+    <img class="teddy" id="teddyBear" src="https://media.giphy.com/media/5yZsmv3QYBx8kDzz6O/giphy.gif" alt="Dancing Teddy Bear">
   </div>
 
   <script>
@@ -71,6 +87,12 @@
       newNoBtn.style.top = `${position.y}px`;
       newNoBtn.onclick = moveNoButton;
       document.querySelector('.container').appendChild(newNoBtn);
+    }
+
+    function showTeddyBear() {
+      const teddyBear = document.getElementById('teddyBear');
+      teddyBear.style.display = 'block'; // Show the teddy bear
+      teddyBear.style.animation = 'dance 1s infinite'; // Start dancing animation
     }
   </script>
 </body>
